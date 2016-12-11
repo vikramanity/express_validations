@@ -6,11 +6,11 @@ require 'express_validations/version'
 Gem::Specification.new do |spec|
   spec.name          = "express_validations"
   spec.version       = ExpressValidations::VERSION
-  spec.authors       = ["Vikram Anand"]
-  spec.email         = ["vikram983@outlook.com"]
+  spec.authors       = ["ToDo"]
+  spec.email         = ["ToDo"]
 
-  spec.summary       = %q{Express the validations in your models as JSON objects.}
-  spec.description   = %q{This gem allows you to express the validations in your models as JSON objects, so that you can implement them as client side validations.}
+  spec.summary       = %q{ToDo}
+  spec.description   = %q{ToDo}
   spec.homepage      = "https://github.com/vikramanity/express_validations"
   spec.license       = "MIT"
 
