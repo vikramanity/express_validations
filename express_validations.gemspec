@@ -6,22 +6,13 @@ require 'express_validations/version'
 Gem::Specification.new do |spec|
   spec.name          = "express_validations"
   spec.version       = ExpressValidations::VERSION
-  spec.authors       = ["ToDo"]
-  spec.email         = ["ToDo"]
+  spec.authors       = ["Vikram Anand"]
+  spec.email         = ["vikram983@outlook.com"]
 
-  spec.summary       = %q{ToDo}
-  spec.description   = %q{ToDo}
+  spec.summary       = %q{Express the validations in your models as JSON objects.}
+  spec.description   = %q{This gem allows you to express the validations in your models as JSON objects, so that you can implement them as client side validations.}
   spec.homepage      = "https://github.com/vikramanity/express_validations"
   spec.license       = "MIT"
-
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
-  end
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
@@ -30,7 +21,12 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.required_ruby_version = '>= 1.9.3'
   spec.add_development_dependency "bundler", "~> 1.13"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency 'pg', '0.17.1'
+  spec.add_development_dependency 'with_model'
+  spec.add_dependency 'activesupport', '>= 3.2.22', '<= 5.0.0.1'
+  spec.add_dependency 'railties', '>= 3.2.22', '<= 5.0.0.1'
 end
