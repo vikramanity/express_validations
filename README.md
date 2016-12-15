@@ -30,7 +30,7 @@ For model classes where you require the validations on client-side, add the foll
 
 Then in the views for this model do:
 
-```
+```ruby
 <%= javascript_tag do %>
 	window.validationRules = <%= #{Your Model}.validations_as_json.html_safe %>;
 <% end %>
@@ -46,7 +46,7 @@ Include the following line in your ```application.js``` file:
 
 Then you can use the included functions, for examples, as:
 
-```
+```Javascript
 // returns true or false
 var fieldValidation = expressValidations.checkFieldValidation($('input#user_first_name'), window.validationRules);
 
