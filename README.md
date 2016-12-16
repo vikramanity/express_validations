@@ -75,6 +75,7 @@ if (validationPassed) {
 
   // in case there are multiple fields to check
   $.each(validateFields, function(i1, $validationField) {
+    // returns a 2D array of elements and their uniqueness results
     uniquenessResults = expressValidations.checkUniqueness($validationField, uniquenessResults);
   });
 
@@ -84,7 +85,7 @@ if (validationPassed) {
       clearInterval(checkUniquenessResult);
       if (window.networkError) {
         alert("Network error. Please try again later.");
-      } else if (this2DArrayContains(false, uniquenessResults)) { // define a function to check any false in uniquenessResults, which is returned a 2D array of elements and their uniqueness results
+      } else if (this2DArrayContains(false, uniquenessResults)) { // define a function to check any false in the uniquenessResults 2D array, against any element
         // define a function to display validation result
         displayUniquenessValidation(uniquenessResults, window.userValidationRules);
       } else {
@@ -100,7 +101,8 @@ You can define your controller method like this:
 ```Ruby
 def determine_uniqueness
   ## define a class method to check uniqueness
-  uniqueness = User.check_uniqueness(params[:value])
+  field_name, with_field_value = params[:field], params[:value]
+  uniqueness = User.check_uniqueness_for(field_name, with_field_value)
 
   respond_to do |format|
     format.json { render json: { uniqueness: uniqueness } }
