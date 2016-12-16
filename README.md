@@ -87,7 +87,7 @@ if (validationPassed) {
         alert("Network error. Please try again later.");
       } else if (this2DArrayContains(false, uniquenessResults)) { // define a function to check any false in the uniquenessResults 2D array, against any element
         // define a function to display validation result
-        displayUniquenessValidation(uniquenessResults, window.userValidationRules);
+        displayUniquenessValidation(uniquenessResults, window.validationRules);
       } else {
         // code to continue with form submission to process
       }
@@ -100,9 +100,9 @@ You can define your controller method like this:
 
 ```Ruby
 def determine_uniqueness
+  field_name, with_value = params[:field], params[:value]
   ## define a class method to check uniqueness
-  field_name, with_field_value = params[:field], params[:value]
-  uniqueness = User.check_uniqueness_for(field_name, with_field_value)
+  uniqueness = User.check_uniqueness_for(field_name, with_value)
 
   respond_to do |format|
     format.json { render json: { uniqueness: uniqueness } }
