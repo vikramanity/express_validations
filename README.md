@@ -61,6 +61,53 @@ var multipleFieldsValidationRules = expressValidations.getValidationsForMultiple
 
 ```
 
+Uniqueness validation should be checked only when all other validations on the field(s) have passed. So it is done through a separate JQuery function.
+
+If you have a ```GET``` route called ```determine_uniqueness``` defined on the relative controller, you can use the provided JQuery function, something like the example below.
+
+```Javascript
+var checkUniquenessResult, uniquenessResults;
+
+// if other validations on the field(s) have passed
+if (validationPassed) {
+  uniquenessResults = []; // using an array is essential, since it is updated via reference
+  window.networkError = false; // in case of network error this is set to true
+
+  // in case there are multiple fields to check
+  $.each(validateFields, function(i1, $validationField) {
+    uniquenessResults = validationFunctions.checkUniqueness($validationField, uniquenessResults);
+  });
+
+  // use setInterval in case you want to wait for the result before continuing with the form submission process
+  checkUniquenessResult = setInterval(function() {
+    if (uniquenessResults.count == validateFields.count) {
+      clearInterval(checkUniquenessResult);
+      if (window.networkError) {
+        alert("Network error. Please try again later.");
+      } else if (this2DArrayContains(false, uniquenessResults)) { // define a function to check any false in uniquenessResults, which is returned a 2D array of elements and their uniqueness results
+        // define a function to display validation result
+        displayUniquenessValidation(uniquenessResults, window.userValidationRules);
+      } else {
+        // code to continue with form submission to process
+      }
+    }
+  }, 200);
+}
+```
+
+You can define your controller method like this:
+
+```Ruby
+def determine_uniqueness
+  ## define a class method to check uniqueness
+  uniqueness = User.check_uniqueness(params[:value])
+
+  respond_to do |format|
+    format.json { render json: { uniqueness: uniqueness } }
+  end
+end
+```
+
 ## Notes
 
 - It requires ```Ruby >= 1.9.3```
