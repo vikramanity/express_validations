@@ -75,7 +75,7 @@ if (validationPassed) {
 
   // in case there are multiple fields to check
   $.each(validateFields, function(i1, $validationField) {
-    uniquenessResults = validationFunctions.checkUniqueness($validationField, uniquenessResults);
+    uniquenessResults = expressValidations.checkUniqueness($validationField, uniquenessResults);
   });
 
   // use setInterval in case you want to wait for the result before continuing with the form submission process
