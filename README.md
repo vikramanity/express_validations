@@ -1,8 +1,8 @@
 # ExpressValidations
 
-This gem allows you to express the validations in your Rails models as JSON objects, so that you can implement them as client side validations with JQuery --- the way you want to.
+This gem allows you to express the validations in your Rails models as JSON objects, so that you can implement them as client side validations with Javascript – the way you want to.
 
-This gem helps to maintain consistency between validation rules on server-side and implementations on client-side.
+It helps to maintain consistency between validation rules on server-side and implementations on client-side.
 
 It can be very handy if you want to display validations in a more user-friendly manner or when you are creating a wizard and want to implement model validations on each step.
 
@@ -38,7 +38,9 @@ Then in the views for this model do:
 
 This will give access of the model's validation definitions to your application's client-side.
 
-But that is not it. You can use the JQuery functions provided with this gem to check if validation passes on a particular field or form, as well as get validation details for a field or a set of fields.
+You can also use the Javascript functions provided with this gem to check:
+- if validation passes on a particular field or form
+- get validation details for a field or a set of fields.
 
 Include the following line in your ```application.js``` file:
 
@@ -61,9 +63,9 @@ var multipleFieldsValidationRules = expressValidations.getValidationsForMultiple
 
 ```
 
-Uniqueness validation should be checked only when all other validations on the field(s) have passed. So it is done through a separate JQuery function.
+Uniqueness validation should be checked only when all other validations on the field(s) have passed. So it is done through a separate Javascript function.
 
-If you have a ```GET``` route called ```determine_uniqueness``` defined on the relative controller, you can use the provided JQuery function, something like the example below.
+If you have a ```GET``` route called ```determine_uniqueness``` defined on the relative controller, you can use the provided Javascript function, something like the example below.
 
 ```Javascript
 var checkUniquenessResult, uniquenessResults;
