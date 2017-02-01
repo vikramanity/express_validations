@@ -85,8 +85,13 @@
         displayValidation($element, tMsg);
       }
     } else if ((validator === "FormatValidator") && ($.inArray(validator, exceptions) === -1)) {
-      regexString = options["with"].source;
-      flag = options["with"].options;
+      // convert Ruby regex to Javascript
+      var flag, rReg, regex, regexString;
+      rReg = options["with"];
+      regexString = "^" + rReg.substr(rReg.indexOf('A') + 1, rReg.lastIndexOf('z') - 1) + "$";
+      flag = /i/i.test(rReg.substr(1, rReg.indexOf('A'))) ? "i" : "";
+      flag += /m/i.test(rReg.substr(1, rReg.indexOf('A'))) ? "m" : "";
+      flag += /g/i.test(rReg.substr(1, rReg.indexOf('A'))) ? "g" : "";
       regex = new RegExp(regexString, flag);
       if (!regex.test($element.val())) {
         validationPassed = false;
