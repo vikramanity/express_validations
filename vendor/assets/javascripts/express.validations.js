@@ -87,11 +87,11 @@
     } else if ((validator === "FormatValidator") && ($.inArray(validator, exceptions) === -1)) {
       // convert Ruby regex to Javascript
       var flag, rReg, regex, regexString;
-      rReg = options["with"];
-      regexString = "^" + rReg.substr(rReg.indexOf('A') + 1, rReg.lastIndexOf('z') - 1) + "$";
-      flag = /i/i.test(rReg.substr(1, rReg.indexOf('A'))) ? "i" : "";
-      flag += /m/i.test(rReg.substr(1, rReg.indexOf('A'))) ? "m" : "";
-      flag += /g/i.test(rReg.substr(1, rReg.indexOf('A'))) ? "g" : "";
+      rReg = options.with;
+      regexString = "^" + rReg.substring(rReg.indexOf('A') + 1, rReg.lastIndexOf('z') - 1) + "$";
+      flag = /i/i.test(rReg.substring(1, rReg.indexOf('A'))) ? "i" : "";
+      flag += /m/i.test(rReg.substring(1, rReg.indexOf('A'))) ? "m" : "";
+      flag += /g/i.test(rReg.substring(1, rReg.indexOf('A'))) ? "g" : "";
       regex = new RegExp(regexString, flag);
       if (!regex.test($element.val())) {
         validationPassed = false;
